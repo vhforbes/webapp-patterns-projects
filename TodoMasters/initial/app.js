@@ -1,22 +1,21 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const todoInput = document.getElementById('todo-input');
-    const addBtn = document.getElementById('add-btn');
-    const todoList = document.getElementById('todo-list');
+// Creating references for the frequently used elements
+globalThis.DOM = {};
+// ^ global object (window, self or frames in the browser)
+const DOM = globalThis.DOM; // Creating a reference for the module
+//* Now with every module we have access to the DOM object
 
-    addBtn.addEventListener('click', () => {
-        const todoText = todoInput.value.trim();
-        if (todoText !== '') {
-            const listItem = document.createElement('li');
-            listItem.className = 'todo-item';
-            listItem.innerHTML = `${todoText} <button class="delete-btn">Delete</button>`;
-            todoList.appendChild(listItem);
-            todoInput.value = '';
-        }
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  DOM.todoList = document.getElementById("todo-list");
+  DOM.addBtn = document.getElementById("add-btn");
+  DOM.todInput = document.getElementById("todo-input");
 
-    todoList.addEventListener('click', (event) => {
-        if (event.target.classList.contains('delete-btn')) {
-            event.target.parentElement.remove();
-        }
-    });
+  DOM.addBtn.addEventListener("click", (event) => {
+    // Todo
+  });
+
+  DOM.todInput.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete-btn")) {
+      // Todo
+    }
+  });
 });
