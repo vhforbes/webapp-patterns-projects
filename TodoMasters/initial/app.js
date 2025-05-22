@@ -12,6 +12,8 @@ const DOM = globalThis.DOM; // Creating a reference for the module (local pointe
 //* Now with every module we have access to the DOM object
 
 function renderList() {
+  DOM.todoList.innerHTML = "";
+
   const list = TodoList.getInstance();
 
   for (let todo of list.items) {
@@ -33,9 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
     CommandExecutor.execute(new Command(Commands.ADD));
   });
 
-  DOM.todoInput.addEventListener("click", (event) => {
+  DOM.todoList.addEventListener("click", (event) => {
     if (event.target.classList.contains("delete-btn")) {
-      // Todo
+      const todoToDelete = event.target.parentNode.dataset.text;
+
+      const cmd = new Command(Commands.DELETE, [todoToDelete]);
+      CommandExecutor.execute(cmd);
     }
   });
 

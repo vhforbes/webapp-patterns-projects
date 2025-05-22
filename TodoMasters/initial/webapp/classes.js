@@ -50,6 +50,7 @@ class TodoList {
     const array = Array.from(this.#data);
     const todoToDelete = array.filter((todo) => todo.text === todo_text)[0];
     this.#data.delete(todoToDelete);
+    this.notify();
   }
 
   find(todo_text) {

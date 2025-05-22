@@ -34,6 +34,7 @@ export const CommandExecutor = {
 
       case Commands.DELETE:
         const [textToDelete] = command.args;
+
         todoList.delete(textToDelete);
 
         break;
