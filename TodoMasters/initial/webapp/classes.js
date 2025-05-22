@@ -40,19 +40,23 @@ class TodoList {
     const array = Array.from(this.#data);
     const todoExists = array.filter((todo) => todo.equals(item).length > 0);
 
-    if (!todoExists) {
+    if (!todoExists.length) {
       this.#data.add(item);
+      this.notify();
     }
   }
+
   delete(todo_text) {
     const array = Array.from(this.#data);
     const todoToDelete = array.filter((todo) => todo.text === todo_text)[0];
     this.#data.delete(todoToDelete);
   }
+
   find(todo_text) {
     const array = Array.from(this.#data);
     return array.find((todo) => todo.text === todo_text);
   }
+
   replaceList(list) {
     this.#data = list;
     this.notify();
@@ -63,3 +67,7 @@ class TodoList {
 // "TodoList" is a function that creates a class, TodoList.prototype will use the actual instance of the Class
 // We "injected" the mixin behavior on the TodoList
 Object.assign(TodoList.prototype, observerMixin);
+
+console.log(TodoList.getInstance());
+
+export { TodoList, TodoItem };
