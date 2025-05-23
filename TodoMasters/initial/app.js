@@ -1,5 +1,6 @@
 import { TodoList } from "./webapp/classes.js";
 import { Command, CommandExecutor, Commands } from "./webapp/command.js";
+import { LocalStorage } from "./webapp/storage.js";
 
 // Creating references for the frequently used elements
 globalThis.DOM = {};
@@ -43,6 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
       CommandExecutor.execute(cmd);
     }
   });
+});
 
+document.addEventListener("DOMContentLoaded", () => {
   TodoList.getInstance().addObserver(renderList);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  LocalStorage.load();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.ctrlKey && event.key === "p") {
+    event.preventDefault();
+    CommandExecutor.execute(new Command(Commands.ADD));
+  }
 });
