@@ -5,10 +5,6 @@ class TodoItem {
     this.text = text;
   }
 
-  static getInstance() {
-    return this.instance;
-  }
-
   // Value Object pattern, if the values inside a object are the same, we should threat them as equals.
   equals(other) {
     return this.text === other.text;

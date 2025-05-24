@@ -1,9 +1,11 @@
 import { TodoList } from "./classes.js";
 
+// Caretaker
 export const TodoHistory = {
   history: [],
   push(state) {
     if (state) {
+      // Memento object that stores data "new Set([...state]"
       this.history.push(new Set([...state]));
     }
   },
@@ -17,6 +19,6 @@ export const TodoHistory = {
 
 const todoList = TodoList.getInstance();
 
-todoList.addObserver(function () {
+todoList.addObserver(function pushNewStateToHistory() {
   TodoHistory.push(todoList.items);
 });

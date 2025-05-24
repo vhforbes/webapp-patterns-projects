@@ -41,6 +41,7 @@ export const CommandExecutor = {
 
         break;
       case Commands.UNDO:
+        // Returns the previous state and replaces it in the List
         const previousList = TodoHistory.pop();
 
         if (previousList) {
