@@ -1,8 +1,10 @@
+import { TodoList } from "./classes.js";
+
 export const TodoHistory = {
   history: [],
   push(state) {
     if (state) {
-      this.history.push(); // todo
+      this.history.push(new Set([...state]));
     }
   },
   pop() {
@@ -12,3 +14,9 @@ export const TodoHistory = {
     }
   },
 };
+
+const todoList = TodoList.getInstance();
+
+todoList.addObserver(function () {
+  TodoHistory.push(todoList.items);
+});

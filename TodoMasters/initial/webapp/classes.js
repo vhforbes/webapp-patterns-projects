@@ -5,6 +5,10 @@ class TodoItem {
     this.text = text;
   }
 
+  static getInstance() {
+    return this.instance;
+  }
+
   // Value Object pattern, if the values inside a object are the same, we should threat them as equals.
   equals(other) {
     return this.text === other.text;
@@ -68,7 +72,5 @@ class TodoList {
 // "TodoList" is a function that creates a class, TodoList.prototype will use the actual instance of the Class
 // We "injected" the mixin behavior on the TodoList
 Object.assign(TodoList.prototype, observerMixin);
-
-console.log(TodoList.getInstance());
 
 export { TodoList, TodoItem };
